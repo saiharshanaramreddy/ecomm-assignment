@@ -1,0 +1,134 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>eCommerce Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Place favicon.ico in the root directory -->
+    <link rel="shortcut icon" type="image/x-icon" href="images/fav.png">
+    
+    <!-- Bootstrap Fremwork Main Css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- All Plugins css -->
+    <link rel="stylesheet" href="css/plugins.css">
+    <!-- Theme shortcodes/elements style -->
+    <link rel="stylesheet" href="css/shortcode/shortcodes.css">
+    <!-- Theme main style -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Responsive css -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- User style -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- Modernizr JS -->
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <!--[if lt IE 8]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->  
+
+    <!-- Body main wrapper start -->
+    <div class="wrapper fixed__footer">
+        <!-- Start Header Style -->
+        <header id="header" class="htc-header">
+            <!-- Start Mainmenu Area -->
+            <div id="sticky-header-with-topbar" class="mainmenu__area sticky__header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2 col-lg-2 col-6">
+                            <div class="logo">
+                                <a href="index.html">
+                                    <img src="images/logo/logo.png" alt="logo">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mobile-menu-area"></div>
+                </div>
+            </div>
+            <!-- End Mainmenu Area -->
+        </header>
+        <!-- End Header Style -->
+        <div class="body__overlay"></div>
+        <!-- Start Our Product Area -->
+        <section class="htc__product__area ptb--130 bg__white">
+            <div class="container">
+                <div class="htc__product__container">
+                    <!-- Start Product MEnu -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="product__menu">
+                                <button data-filter="*"  class="is-checked">All</button>
+                                <button data-filter=".cat--2">Others</button>
+                                <button data-filter=".cat--1">General</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Product MEnu -->
+                    <div class="row product__list" id="add_to_me">
+                        <script>
+                                $.getJSON('https://gist.githubusercontent.com/bharadwajturlapati/4e81154dbcc7d6928921b96057fc5b4a/raw/d31da32d6e5c1dd2a11968d7e94d3c60dfd50fcb/products.json', function(data) {
+                                    for(var k in data) {
+                                        var filter_class = data[k].hub=='general'?'cat--1':'cat--2';
+                                        var name = data[k].name.replace(/[_\W]+/g, "-");
+                                        document.getElementById("add_to_me").innerHTML +=  
+                                          "<div class='col-md-3 single__pro col-lg-3 col-md-4 col-sm-12 "+filter_class+"'><div class='product foo'><div class='product__inner'><div class='pro__thumb'><a href='#''><img src='images/product/default.jpeg' alt='"+data[k].name+"'></a></div><div class='product__hover__info'><ul class='product__action'><li><a data-toggle='modal' data-target='#"+name+"' title='Quick View' class='quick-view modal-view detail-link' href='#''><span class='ti-plus'></span></a></li></ul></div></div><div class='product__details'><h2><a href='product-details.html'>"+data[k].name+"</a></h2></div></div></div>"
+                                    }
+                                });
+                                </script>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+                <!-- Start Copyright Area -->
+                <div class="htc__copyright__area">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                            <div class="copyright__inner">
+                                <div class="copyright">
+                                    <p>© 2020 All Right Reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Copyright Area -->
+            </div>
+        </footer>
+        <!-- End Footer Area -->
+    </div>
+    <!-- Body main wrapper end -->
+    <!-- QUICKVIEW PRODUCT -->
+    <div id="quickview-wrapper">
+        
+        <!-- Modal -->
+        <script>
+                $.getJSON('https://gist.githubusercontent.com/bharadwajturlapati/4e81154dbcc7d6928921b96057fc5b4a/raw/d31da32d6e5c1dd2a11968d7e94d3c60dfd50fcb/products.json', function(data) {
+                    for(var k in data) {
+                        var name = data[k].name.replace(/[_\W]+/g, "-");
+                        document.getElementById("quickview-wrapper").innerHTML +=
+                        "<div class='modal fade' id='"+name+"' tabindex='-1' role='dialog'><div class='modal-dialog modal__container' role='document'><div class='modal-content'><div class='modal-header modal__header'><button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div><div class='modal-body'><div class='modal-product'><div class='product-images'><div class='main-image images'><img alt='big images' src='images/product/default_big.jpg'/></div></div><div class='product-info'><p>Name: </p>"+data[k].name+"<div class='quick-desc'><p>Description:</p>"+data[k].description+"</div><div class='quick-desc'><p>Author:</p>"+data[k].author+"</div><div class='quick-desc'><p>Key:</p>"+data[k].key+"</div></div></div></div></div></div>"
+        }
+})
+</script>
+        <!-- END Modal -->
+</div>
+    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <!-- Bootstrap Framework js -->
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- All js plugins included in this file. -->
+    <script src="js/plugins.js"></script>
+    <!-- Main js file that contents all jQuery plugins activation. -->
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
